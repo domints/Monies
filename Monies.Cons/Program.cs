@@ -5,13 +5,14 @@ namespace Monies.Cons
 {
     class Program
     {
-        static ILogger _logger;
         static void Main(string[] args)
         {
             ServiceInjector.Configure();
-            _logger = ServiceInjector.Logger<Program>();
-            _logger.LogError("Hello World!");
+            ServiceInjector.StartScope();
+
             Console.WriteLine("HW!?");
+
+            ServiceInjector.KillScope();
         }
     }
 }
