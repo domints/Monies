@@ -2,13 +2,14 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
 
-namespace Monies.Console
+namespace Monies.Cons
 {
     public static class ServiceInjector {
         static ServiceProvider _services;
         public static void Configure() {
             var svcCollection = new ServiceCollection();
             svcCollection.AddLogging(opt => {
+                opt.AddFilter("Monies.Cons.Program", LogLevel.Debug);
                 opt.AddConsole();
             });
 

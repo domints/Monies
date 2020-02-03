@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
 
-namespace Monies.Console
+namespace Monies.Cons
 {
     class Program
     {
@@ -11,6 +11,7 @@ namespace Monies.Console
             ServiceInjector.Configure();
             _logger = ServiceInjector.Logger<Program>();
             _logger.LogError("Hello World!");
+            Console.WriteLine("HW!?");
         }
     }
 }
