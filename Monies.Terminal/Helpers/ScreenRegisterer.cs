@@ -24,7 +24,7 @@ namespace Monies.Terminal.Helpers
         {
             return
               assembly.GetTypes()
-                      .Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal))
+                      .Where(t => t.Namespace.StartsWith(nameSpace, StringComparison.Ordinal))
                       .ToArray();
         }
     }

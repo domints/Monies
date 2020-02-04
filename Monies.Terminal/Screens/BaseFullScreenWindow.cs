@@ -33,5 +33,11 @@ namespace Monies.Terminal.Screens
         }
 
         public abstract MenuBarItem[] Menu { get; }
+
+        protected void Open<TWindow>()
+            where TWindow : BaseFullScreenWindow
+        {
+            ScreenManager.ShowFullScreen<TWindow>();
+        }
     }
 }

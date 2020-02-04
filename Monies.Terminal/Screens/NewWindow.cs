@@ -1,16 +1,27 @@
+using System.Linq;
+using Monies.Database;
 using Terminal.Gui;
 
 namespace Monies.Terminal.Screens
 {
     public class NewWindow : BaseFullScreenWindow
     {
-        public NewWindow()
+        public override MenuBarItem[] Menu => AppMenu.DefaultMenu;
+
+        private readonly MoniesDbContext _cx;
+
+        public NewWindow(MoniesDbContext cx)
             : base("New Window")
         {
+            _cx = cx;
             var lvl = new Toplevel();
             Add(new Label(0, 0, "CFFFFFFFFFF"));
+            Add(new Button (0, 1, "Test DB", is_default: true) { Clicked = () => { Open<NewWindow>(); } });
         }
 
-        public override MenuBarItem[] Menu => AppMenu.DefaultMenu;
+        private void TestDb()
+        {
+            _cx.UserSettings.ToList();
+        }
     }
 }

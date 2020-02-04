@@ -9,7 +9,7 @@ namespace Monies.Terminal.Screens
             : base("Monies")
         {
             Add(new Label(0, 0, "XDD"));
-            Add(new Button (0, 1, "Ok", is_default: true) { Clicked = () => { System.Diagnostics.Debug.WriteLine("newWin"); ScreenManager.ShowFullScreen<NewWindow>(); } });
+            Add(new Button (0, 1, "Ok", is_default: true) { Clicked = () => { Open<NewWindow>(); } });
         }
 
         public override MenuBarItem[] Menu => AppMenu.DefaultMenu;
