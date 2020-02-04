@@ -13,6 +13,7 @@ namespace Monies.Terminal.Screens
         {
             Console.SetWindowSize(width, height);
             var mainWindow = ServiceInjector.GetService<MainWindow>();
+            Console.Title = mainWindow.Title.ToString();
             _currentScreen = mainWindow;
             ShowScreen(Application.Top, mainWindow);
         }
