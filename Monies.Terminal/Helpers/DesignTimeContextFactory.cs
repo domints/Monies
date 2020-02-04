@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Monies.Database;
 
-namespace Monies.Cons.Helpers
+namespace Monies.Terminal.Helpers
 {
     public class MoniesDbContextDesignFactory : IDesignTimeDbContextFactory<MoniesDbContext>
     {

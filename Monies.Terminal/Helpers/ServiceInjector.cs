@@ -2,9 +2,10 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Monies.Terminal.Helpers;
 using Monies.Database;
 
-namespace Monies.Cons
+namespace Monies.Terminal
 {
     public static class ServiceInjector {
         static IServiceProvider _services;
@@ -20,6 +21,8 @@ namespace Monies.Cons
             
             var connString = Settings.GetConnString();
             svcCollection.AddDbContext<MoniesDbContext>(opts => opts.UseNpgsql(connString, opts => opts.SetPostgresVersion(9, 6)));
+
+            svcCollection.AddScreens();
 
             ConfigureServices(svcCollection);
 

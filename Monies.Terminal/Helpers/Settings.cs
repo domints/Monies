@@ -1,7 +1,7 @@
 using Monies.Database.Extensions;
 using System;
 
-namespace Monies.Cons
+namespace Monies.Terminal
 {
     public static class Settings
     {

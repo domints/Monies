@@ -1,18 +1,21 @@
 ﻿using System;
-using Microsoft.Extensions.Logging;
+using Monies.Terminal.Screens;
+using Terminal.Gui;
 
-namespace Monies.Cons
+namespace Monies.Terminal
 {
     class Program
     {
         static void Main(string[] args)
         {
+            //Console.ReadKey();
             ServiceInjector.Configure();
             ServiceInjector.StartScope();
-
-            Console.WriteLine("HW!?");
-
+            Application.Init();
+            ScreenManager.Init(100, 50);
+            Application.Run();
             ServiceInjector.KillScope();
+            
         }
     }
 }
