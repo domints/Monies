@@ -16,7 +16,7 @@ namespace Monies.Terminal.Screens
             _cx = cx;
             var lvl = new Toplevel();
             Add(new Label(0, 0, "CFFFFFFFFFF"));
-            Add(new Button (0, 1, "Test DB", is_default: true) { Clicked = () => { Open<NewWindow>(); } });
+            Add(new Button (0, 1, "Test DB", is_default: true) { Clicked = () => { ScreenManager.ShowLoadingDialog(); } });
         }
 
         private void TestDb()

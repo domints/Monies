@@ -39,6 +39,12 @@ namespace Monies.Terminal.Screens
             Application.Run(newLevel);
         }
 
+        public static void ShowLoadingDialog()
+        {
+            var dialog = new LoadingDialog();
+            dialog.Show();
+        }
+
         private static void ShowScreen(Toplevel top, BaseFullScreenWindow screen)
         {
             top.Add(
