@@ -39,6 +39,11 @@ namespace Monies.Terminal.Screens
 
             _timeoutToken = Application.MainLoop.AddTimeout(new TimeSpan(0, 0, 0, 0, 300), RefreshLoader);
             Application.Run(this);
+
+            if(job.Exception != null)
+            {
+                ScreenManager.ShowException(job.Exception);
+            }
         }
 
         public TResult Show<TResult>(Task<TResult> job)
@@ -49,6 +54,11 @@ namespace Monies.Terminal.Screens
 
             _timeoutToken = Application.MainLoop.AddTimeout(new TimeSpan(0, 0, 0, 0, 300), RefreshLoader);
             Application.Run(this);
+
+            if(job.Exception != null)
+            {
+                ScreenManager.ShowException(job.Exception);
+            }
 
             return job.Result;
         }

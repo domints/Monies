@@ -25,7 +25,11 @@ namespace Monies.Terminal.Screens
         public static void Quit()
         {
             var n = MessageBox.Query(50, 7, "Quit", "Are you sure you want to quit this app?", "Yes", "No");
-            if(n == 0) System.Environment.Exit(0);
+            if(n == 0) 
+            {
+                Application.Driver.End();
+                System.Environment.Exit(0);
+            }
         }
     }
 }

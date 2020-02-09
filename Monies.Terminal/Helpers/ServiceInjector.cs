@@ -16,6 +16,8 @@ namespace Monies.Terminal
             var svcCollection = new ServiceCollection();
             svcCollection.AddLogging(opt => {
                 opt.AddFilter("Monies.Cons.Program", LogLevel.Debug);
+                opt.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
+                opt.AddFilter("Microsoft.EntityFrameworkCore.Infrastructure", LogLevel.Warning);
                 opt.AddConsole();
             });
             

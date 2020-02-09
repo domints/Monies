@@ -62,6 +62,17 @@ namespace Monies.Terminal.Screens
             return dialog.Show(job);
         }
 
+        public static void ShowException(Exception ex)
+        {
+            var d = new Dialog (
+			"Exception", 50, 20,
+			new Button ("Ok", is_default: true) { Clicked = () => { Application.RequestStop (); } }
+            );
+		    var ml2 = new Label (1, 1, ex.Message);
+		    d.Add (ml2);
+		    Application.Run (d);
+        }
+
         private static void ShowScreen(Toplevel top, BaseFullScreenWindow screen)
         {
             top.Add(

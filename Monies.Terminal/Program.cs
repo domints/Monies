@@ -11,11 +11,16 @@ namespace Monies.Terminal
             //Console.ReadKey();
             ServiceInjector.Configure();
             ServiceInjector.StartScope();
-            Application.Init();
-            ScreenManager.Init();
-            Application.Run();
-            ServiceInjector.KillScope();
-            
+            try {
+                Application.Init();
+                ScreenManager.Init();
+                Application.Run();
+            }
+            catch
+            {
+                Application.Driver.End();
+                ServiceInjector.KillScope();
+            }
         }
     }
 }
