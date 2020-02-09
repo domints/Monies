@@ -38,6 +38,30 @@ namespace Monies.Terminal.Screens
             Application.Run(newLevel);
         }
 
+        public static TResult ShowLoadingDialog<TResult>(Func<TResult> job)
+        {
+            var dialog = new LoadingDialog();
+            return dialog.Show(job);
+        }
+
+        public static void ShowLoadingDialog(Action job)
+        {
+            var dialog = new LoadingDialog();
+            dialog.Show(job);
+        }
+
+        public static void ShowLoadingDialog(Task job)
+        {
+            var dialog = new LoadingDialog();
+            dialog.Show(job);
+        }
+
+        public static TResult ShowLoadingDialog<TResult>(Task<TResult> job)
+        {
+            var dialog = new LoadingDialog();
+            return dialog.Show(job);
+        }
+
         private static void ShowScreen(Toplevel top, BaseFullScreenWindow screen)
         {
             top.Add(

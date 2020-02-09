@@ -1,4 +1,5 @@
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Monies.Database;
 using Terminal.Gui;
 
@@ -16,12 +17,12 @@ namespace Monies.Terminal.Screens
             _cx = cx;
             var lvl = new Toplevel();
             Add(new Label(0, 0, "CFFFFFFFFFF"));
-            Add(new Button (0, 1, "Test DB", is_default: true) { Clicked = () => { Open<NewWindow>(); } });
+            Add(new Button (0, 1, "Test DB", is_default: true) { Clicked = () => { TestDb(); } });
         }
 
         private void TestDb()
         {
-            _cx.UserSettings.ToList();
+            Load(_cx.UserSettings.ToListAsync());
         }
     }
 }
