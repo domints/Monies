@@ -12,7 +12,7 @@ namespace Monies.Terminal
             ServiceInjector.Configure();
             ServiceInjector.StartScope();
             Application.Init();
-            ScreenManager.Init(100, 50);
+            ScreenManager.Init();
             Application.Run();
             ServiceInjector.KillScope();
             

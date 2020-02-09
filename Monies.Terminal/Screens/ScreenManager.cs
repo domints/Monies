@@ -9,9 +9,8 @@ namespace Monies.Terminal.Screens
     {
         private static Window _currentScreen;
 
-        public static void Init(int width, int height)
+        public static void Init()
         {
-            Console.SetWindowSize(width, height);
             var mainWindow = ServiceInjector.GetService<MainWindow>();
             Console.Title = mainWindow.Title.ToString();
             _currentScreen = mainWindow;

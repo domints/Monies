@@ -20,7 +20,7 @@ namespace Monies.Terminal
             });
             
             var connString = Settings.GetConnString();
-            svcCollection.AddDbContext<MoniesDbContext>(opts => opts.UseNpgsql(connString, opts => opts.SetPostgresVersion(9, 6)));
+            svcCollection.AddDbContext<MoniesDbContext>(opts => opts.UseNpgsql(connString, o => o.SetPostgresVersion(9, 6)));
 
             svcCollection.AddScreens();
 
