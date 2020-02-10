@@ -49,9 +49,7 @@ namespace Monies.Terminal.Screens
 
         public TResult Show<TResult>(Task<TResult> job)
         {
-            job.ContinueWith((act) => {
-                Application.MainLoop.Invoke(CloseLoading);
-            });
+            job.ContinueWith((_) => Application.MainLoop.Invoke(CloseLoading));
 
             _timeoutToken = Application.MainLoop.AddTimeout(new TimeSpan(0, 0, 0, 0, 300), RefreshLoader);
             Application.Run(this);
