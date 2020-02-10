@@ -31,11 +31,14 @@ namespace Monies.Terminal.Screens
         public static void ShowFullScreen<TScreen>()
             where TScreen : BaseFullScreenWindow
         {
-            var screen = ServiceInjector.GetService<TScreen>();
-            var newLevel = new Toplevel(Application.Current.Frame);
-            ShowScreen(newLevel, screen);
-            _currentScreen = screen;
-            Application.Run(newLevel);
+            using(var _ = ServiceInjector.NewScope())
+            {
+                var screen = ServiceInjector.GetService<TScreen>();
+                var newLevel = new Toplevel(Application.Current.Frame);
+                ShowScreen(newLevel, screen);
+                _currentScreen = screen;
+                Application.Run(newLevel);
+            }
         }
 
         public static TResult ShowLoadingDialog<TResult>(Func<TResult> job)

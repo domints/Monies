@@ -26,13 +26,16 @@ namespace Monies.Terminal.Screens
                 }
                 else 
                 {
-                    Application.RequestStop();
+                    Close();
                 }
+
                 return true;
             }
 
             return base.ProcessKey(keyEvent);
         }
+
+        
 
         public abstract MenuBarItem[] Menu { get; }
 
@@ -40,6 +43,11 @@ namespace Monies.Terminal.Screens
             where TWindow : BaseFullScreenWindow
         {
             ScreenManager.ShowFullScreen<TWindow>();
+        }
+
+        protected void Close()
+        {
+            Application.RequestStop();
         }
 
         protected void Load(Action job)

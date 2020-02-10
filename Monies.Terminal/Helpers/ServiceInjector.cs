@@ -4,14 +4,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Monies.Terminal.Helpers;
 using Monies.Database;
+using System.Collections.Generic;
 
 namespace Monies.Terminal
 {
     public static class ServiceInjector {
         static IServiceProvider _services;
-        static IServiceScope _scope;
 
-        static IServiceProvider _provider => _scope?.ServiceProvider ?? _services;
+        static Stack<IServiceScope> _scopeStack;
+
+        static IServiceProvider _provider => _scopeStack.NullPeek()?.ServiceProvider ?? _services;
         public static void Configure() {
             var svcCollection = new ServiceCollection();
             svcCollection.AddLogging(opt => {
@@ -29,6 +31,7 @@ namespace Monies.Terminal
             ConfigureServices(svcCollection);
 
             _services = svcCollection.BuildServiceProvider();
+            _scopeStack = new Stack<IServiceScope>();
         }
 
         public static ILogger<T> Logger<T>()
@@ -43,16 +46,19 @@ namespace Monies.Terminal
 
         public static void StartScope()
         {
-            KillScope();
-            _scope = _services.CreateScope();
+            _scopeStack.Push(_services.CreateScope());
+        }
+
+        public static IServiceScope NewScope()
+        {
+            return _services.CreateScope();
         }
 
         public static void KillScope() 
         {
-            if(_scope != null)
+            if(_scopeStack.TryPop(out IServiceScope scope))
             {
-                _scope.Dispose();
-                _scope = null;
+                scope.Dispose();
             }
         }
 

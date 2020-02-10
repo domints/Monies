@@ -34,9 +34,7 @@ namespace Monies.Terminal.Screens
 
         public void Show(Task job)
         {
-            job.ContinueWith((act) => {
-                Application.MainLoop.Invoke(CloseLoading);
-            });
+            job.ContinueWith((_) => Application.MainLoop.Invoke(CloseLoading));
 
             _timeoutToken = Application.MainLoop.AddTimeout(new TimeSpan(0, 0, 0, 0, 300), RefreshLoader);
             Application.Run(this);
@@ -44,6 +42,8 @@ namespace Monies.Terminal.Screens
             if(job.Exception != null)
             {
                 ScreenManager.ShowException(job.Exception);
+                var logger = ServiceInjector.Logger<LoadingDialog>();
+                logger.LogError(job.Exception, "Exception while executing background task!");
             }
         }
 
