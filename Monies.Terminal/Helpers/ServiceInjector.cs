@@ -15,10 +15,10 @@ namespace Monies.Terminal
         public static void Configure() {
             var svcCollection = new ServiceCollection();
             svcCollection.AddLogging(opt => {
-                opt.AddFilter("Monies.Cons.Program", LogLevel.Debug);
-                opt.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
-                opt.AddFilter("Microsoft.EntityFrameworkCore.Infrastructure", LogLevel.Warning);
-                opt.AddConsole();
+                //opt.AddFilter("Monies.Cons.Program", LogLevel.Debug);
+                //opt.AddFilter("Microsoft.EntityFrameworkCore.Database.Command", LogLevel.Warning);
+                //opt.AddFilter("Microsoft.EntityFrameworkCore.Infrastructure", LogLevel.Warning);
+                opt.AddFile();
             });
             
             var connString = Settings.GetConnString();
@@ -31,7 +31,7 @@ namespace Monies.Terminal
             _services = svcCollection.BuildServiceProvider();
         }
 
-        public static ILogger Logger<T>()
+        public static ILogger<T> Logger<T>()
         {
             return _provider.GetService<ILoggerFactory>().CreateLogger<T>();
         }

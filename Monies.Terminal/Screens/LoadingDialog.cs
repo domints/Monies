@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using Mono.Terminal;
 using NStack;
 using Terminal.Gui;
@@ -58,6 +59,8 @@ namespace Monies.Terminal.Screens
             if(job.Exception != null)
             {
                 ScreenManager.ShowException(job.Exception);
+                var logger = ServiceInjector.Logger<LoadingDialog>();
+                logger.LogError(job.Exception, "Exception while executing background task!");
             }
 
             return job.Result;

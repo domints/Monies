@@ -1,0 +1,6 @@
+2020-02-10 10:13:55.820 +01:00 [Information] Monies.Terminal.Screens.NewWindow: Testing database
+2020-02-10 10:13:56.535 +01:00 [Information] Microsoft.EntityFrameworkCore.Infrastructure: Entity Framework Core 3.1.1 initialized 'MoniesDbContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL' with options: PostgresVersion=9.6 
+2020-02-10 10:13:58.068 +01:00 [Information] Microsoft.EntityFrameworkCore.Database.Command: Executed DbCommand (298ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT u.user_setting_id, u.birth_date, u.preferred_period_type, u.preferred_value_type
+FROM user_settings AS u
+2020-02-10 10:13:58.099 +01:00 [Information] Monies.Terminal.Screens.NewWindow: Got 0 entries.
